@@ -1,0 +1,35 @@
+{
+  "name": "dsh-anti-ai-fiction",
+  "version": "0.1.0",
+  "description": "反 AI 味质检排雷 + 强制拦截。40 条内容层雷区（名字/事物/对话/景色），每条命中都带原文证据与定位；命中重灾区达阈值直接打回重写，不做润色。零依赖，纯 Node 内置。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5",
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  }
+}

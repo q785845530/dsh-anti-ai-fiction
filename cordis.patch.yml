@@ -1,0 +1,15 @@
+# dsh-anti-ai-fiction — bundle patch layer.
+#
+# 加载包主入口作为 host 半：一个普通 Cordis 插件。
+# host 半做两件事：
+#   1) 注册四个工具 —— deai_audit / deai_polish / deai_guard / deai_rules。
+#      它们跑 40 条雷区检测，产出**带原文证据与定位**的报告，
+#      命中重灾区达阈值就打回重写；不自己调模型，只返回渲染好的提示词；
+#   2) 提供 /api/dsh-anti-ai-fiction/* 接口，供浏览器半读取规则与跑审计。
+#
+# 设计要点：判据（雷区表、检测、裁决）全在插件里算完，
+# 模型只负责「写」和「改」这两件真正需要模型的事。
+# 插件不替人做决定 —— 每道门禁都写明「人工门禁」在哪。
+- insert:
+    - id: dsh-anti-ai-fiction
+      name: dsh-anti-ai-fiction
